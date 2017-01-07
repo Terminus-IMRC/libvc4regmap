@@ -20,16 +20,19 @@
    #define VC4REGMAP_SHIFT 4
 #endif /* VC4REGMAP_SHIFT */
 
-#ifndef VC4REGMAP_TYPE_RW
-   #define VC4REGMAP_TYPE_RW uint32_t
-#endif /* VC4REGMAP_TYPE_RW */
+#ifndef HW_REGISTER_RW
+   #ifndef VC4REGMAP_TYPE_RW
+      #define VC4REGMAP_TYPE_RW uint32_t
+   #endif /* VC4REGMAP_TYPE_RW */
+   #define HW_REGISTER_RW(addr) ((VC4REGMAP_TYPE_RW) addr)
+#endif /* HW_REGISTER_RW */
 
-#ifndef VC4REGMAP_TYPE_RO
-   #define VC4REGMAP_TYPE_RO uint32_t
-#endif /* VC4REGMAP_TYPE_RO */
-
-#define HW_REGISTER_RW(addr) ((VC4REGMAP_TYPE_RW) addr)
-#define HW_REGISTER_RO(addr) ((VC4REGMAP_TYPE_RO) addr)
+#ifndef HW_REGISTER_RO
+   #ifndef VC4REGMAP_TYPE_RO
+      #define VC4REGMAP_TYPE_RO uint32_t
+   #endif /* VC4REGMAP_TYPE_RO */
+   #define HW_REGISTER_RO(addr) ((VC4REGMAP_TYPE_RO) addr)
+#endif /* HW_REGISTER_RO */
 
 #include <vc4regmap/v3d.h>
 
