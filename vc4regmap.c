@@ -27,12 +27,12 @@ void vc4regmap_finalize()
 	bcm_host_deinit();
 }
 
-uint32_t* vc4regmap_map_peri()
+volatile uint32_t* vc4regmap_map_peri()
 {
 	return mapmem_cpu(BUS_TO_PHYS(peri_addr), peri_size);
 }
 
-void vc4regmap_unmap_peri(uint32_t *peri)
+void vc4regmap_unmap_peri(volatile uint32_t *peri)
 {
-	unmapmem_cpu(peri, peri_size);
+	unmapmem_cpu((void*) peri, peri_size);
 }
