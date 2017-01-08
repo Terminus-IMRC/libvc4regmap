@@ -1,0 +1,5 @@
+.*.swp
+
+libvc4regmap.so
+libvc4regmap.a
+vc4regmap.c.o
