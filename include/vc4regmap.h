@@ -36,4 +36,9 @@
 
 #include <vc4regmap/v3d.h>
 
+	void vc4regmap_init();
+	void vc4regmap_finalize();
+	uint32_t* vc4regmap_map_peri();
+	void vc4regmap_unmap_peri(uint32_t *peri);
+
 #endif /* _VC4REGMAP_H_ */
