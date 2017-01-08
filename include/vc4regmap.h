@@ -40,5 +40,6 @@
 	void vc4regmap_finalize();
 	volatile uint32_t* vc4regmap_map_peri();
 	void vc4regmap_unmap_peri(volatile uint32_t *peri);
+	_Bool is_qpu_enabled(volatile uint32_t *peri);
 
 #endif /* _VC4REGMAP_H_ */

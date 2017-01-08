@@ -36,3 +36,11 @@ void vc4regmap_unmap_peri(volatile uint32_t *peri)
 {
 	unmapmem_cpu((void*) peri, peri_size);
 }
+
+_Bool is_qpu_enabled(volatile uint32_t *peri)
+{
+	const uint32_t expected = ('V' << 0) | ('3' << 8) | ('D' << 16);
+	if ((peri[V3D_IDENT0] & 0xffffff) == expected)
+		return !0;
+	return 0;
+}
