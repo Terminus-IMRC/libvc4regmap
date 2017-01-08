@@ -32,8 +32,9 @@ libvc4regmap.a: $(OBJS)
 	$(COMPILE.c) $(OUTPUT_OPTION) $<
 
 .PHONY: install
-install:
-	$(MKDIR) -p "$(DESTDIR)/$(PREFIX)/include/vc4regmap"
+install: all
+	$(MKDIR) -p "$(DESTDIR)/$(PREFIX)/lib" "$(DESTDIR)/$(PREFIX)/include/vc4regmap"
+	$(INSTALL) -m 644 -t "$(DESTDIR)/$(PREFIX)/lib" libvc4regmap.so libvc4regmap.a
 	$(INSTALL) -m 644 -t "$(DESTDIR)/$(PREFIX)/include" include/vc4regmap.h
 	$(INSTALL) -m 644 -t "$(DESTDIR)/$(PREFIX)/include/vc4regmap" include/vc4regmap/v3d.h
 
