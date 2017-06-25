@@ -5,7 +5,7 @@ PREFIX ?= /usr/local
 TARGETS := libvc4regmap.so libvc4regmap.a
 SRCS := vc4regmap.c
 OBJS := $(SRCS:%.c=%.c.o)
-EXTRACFLAGS := -pipe -Wall -Wextra -O2 -g -Iinclude/ -I/opt/vc/include -I/opt/vc/include/interface/vcos/pthreads/ -I/opt/vc/include/interface/vmcs_host/linux/
+EXTRACFLAGS := -pipe -Wall -Wextra -O2 -g -Iinclude/ -I/opt/vc/include/
 
 CC := gcc
 AR := ar
