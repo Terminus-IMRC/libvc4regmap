@@ -1,4 +1,4 @@
-#define V3D_BASE (VC4REGMAP_OFFSET + 0xc00000)
+#define V3D_BASE 0xc00000
 
 #define V3D_IDENT0                                               HW_REGISTER_RW( V3D_BASE+0x0000 )
    #define V3D_IDENT0_MASK                                       0xffffffff
