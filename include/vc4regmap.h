@@ -15,10 +15,8 @@
 #define HW_REGISTER_RW(addr) ((uint32_t) ((((addr)) >> 2)))
 #include <vc4regmap/v3d.h>
 
-    void vc4regmap_init();
-    void vc4regmap_finalize();
-    volatile uint32_t* vc4regmap_map_peri();
-    void vc4regmap_unmap_peri(volatile uint32_t *peri);
+    volatile uint32_t* vc4regmap_init();
+    int vc4regmap_finalize();
     _Bool is_qpu_enabled(volatile uint32_t *peri);
 
 #endif /* _VC4REGMAP_H_ */
