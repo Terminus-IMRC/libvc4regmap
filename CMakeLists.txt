@@ -34,6 +34,7 @@ endif ()
 
 add_subdirectory(src)
 add_subdirectory(include)
+add_subdirectory(test)
 
 configure_file(libvc4regmap.pc.in libvc4regmap.pc @ONLY)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libvc4regmap.pc"

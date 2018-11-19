@@ -1,10 +1,12 @@
-libvc4regmap.pc
-libvc4regmap-*-*.deb
+/test/ident
 
-CPackConfig.cmake
-CPackSourceConfig.cmake
-_CPack_Packages/
-DartConfiguration.tcl
+/libvc4regmap.pc
+/libvc4regmap-*-*.deb
+
+/CPackConfig.cmake
+/CPackSourceConfig.cmake
+/_CPack_Packages/
+/DartConfiguration.tcl
 
 
 # Created by https://www.gitignore.io/api/c,git,vim,linux,emacs,macos,cmake,windows

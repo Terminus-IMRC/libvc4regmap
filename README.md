@@ -16,5 +16,10 @@ $ make package
 $ sudo dpkg -i libvc4regmap-x.y.z-system.deb
 ```
 
+
+## Running tests
+
 ```
+$ make
+$ sudo ctest -V
 ```
