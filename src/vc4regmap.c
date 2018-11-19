@@ -1,3 +1,11 @@
+#if !defined(__arm__) && !defined(__aarch64__)
+#error "This code is for AArch32 and AArch64 only"
+#endif /* !defined(__arm__) && !defined(__aarch64__) */
+
+#if defined(__arm__) && defined(__aarch64__)
+#error "__arm__ and __aarch64__ are both defined???"
+#endif /* defined(__arm__) && defined(__aarch64__) */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -95,7 +103,11 @@ uint32_t vc4regmap_read(const uint32_t offs)
     uint32_t val;
 
     asm volatile (
+#ifdef __arm__
             "ldr %[value], [%[addr]]\n\t"
+#elif defined(__aarch64__)
+            "ldr %w[value], [%[addr]]\n\t"
+#endif
             : [value] "=r" (val)
             : [addr] "r" (peri + offs)
             : "memory"
@@ -107,7 +119,11 @@ uint32_t vc4regmap_read(const uint32_t offs)
 void vc4regmap_write(const uint32_t offs, const uint32_t val)
 {
     asm volatile (
+#if defined(__arm__)
             "str %[value], [%[addr]]\n\t"
+#elif defined(__aarch64__)
+            "str %w[value], [%[addr]]\n\t"
+#endif
             :
             : [value] "r" (val),
               [addr] "r" (peri + offs)
