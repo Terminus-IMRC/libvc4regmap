@@ -12,12 +12,9 @@ The register definitions are derived from
 $ git clone https://github.com/Terminus-IMRC/libvc4regmap.git
 $ cd libvc4regmap/
 $ cmake .
-$ make
-$ sudo make install
-```
-
-You can create Debian package and install it:
-```
 $ make package
 $ sudo dpkg -i libvc4regmap-x.y.z-system.deb
+```
+
+```
 ```
