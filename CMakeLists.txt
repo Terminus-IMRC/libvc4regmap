@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.0)
+# For CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT
+cmake_minimum_required(VERSION 3.7.2)
 
 project(libvc4regmap)
 include(CTest)
@@ -13,9 +14,14 @@ set(CPACK_PACKAGE_VERSION_MAJOR 0)
 set(CPACK_PACKAGE_VERSION_MINOR 1)
 set(CPACK_PACKAGE_VERSION_PATCH 0)
 
-if ("${CPACK_PACKAGING_INSTALL_PREFIX}" STREQUAL "")
-    set(CPACK_PACKAGING_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
+# CMAKE_INSTALL_PREFIX and CPACK_PACKAGING_INSTALL_PREFIX must be identical
+# because the install prefix is used in the pkg-config file which will be
+# auto-generated.
+if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+    set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "Install prefix" FORCE)
 endif ()
+set(CPACK_PACKAGING_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
+message(STATUS "Install prefix is set to ${CMAKE_INSTALL_PREFIX}")
 include(CPack)
 
 find_package(PkgConfig)
