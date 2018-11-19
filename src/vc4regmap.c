@@ -20,7 +20,7 @@ volatile uint32_t* vc4regmap_init(void)
     long pagesize;
     int err;
 
-    fd = open("/dev/mem", O_RDWR);
+    fd = open("/dev/mem", O_RDWR | O_SYNC);
     if (fd == -1) {
         fprintf(stderr, "error: open: /dev/mem: %s\n", strerror(errno));
         goto failed_open;
