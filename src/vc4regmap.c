@@ -13,7 +13,7 @@
 static uint32_t *peri = NULL;
 static unsigned peri_size = 0;
 
-volatile uint32_t* vc4regmap_init()
+volatile uint32_t* vc4regmap_init(void)
 {
     int fd;
     unsigned peri_addr;
@@ -69,7 +69,7 @@ failed_open:
     return NULL;
 }
 
-int vc4regmap_finalize()
+int vc4regmap_finalize(void)
 {
     int err;
 
