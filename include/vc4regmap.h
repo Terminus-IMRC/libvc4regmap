@@ -14,6 +14,7 @@
 
 #define HW_REGISTER_RW(addr) ((uint32_t) ((((addr)) >> 2)))
 #include <vc4regmap/v3d.h>
+#include <vc4regmap/i2c_spi_slv.h>
 
     volatile uint32_t* vc4regmap_init(void);
     int vc4regmap_finalize(void);
