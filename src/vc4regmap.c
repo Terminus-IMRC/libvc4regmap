@@ -26,7 +26,6 @@ volatile uint32_t* vc4regmap_init(void)
         goto failed_open;
     }
 
-    bcm_host_init();
     peri_addr = bcm_host_get_peripheral_address();
     peri_size = bcm_host_get_peripheral_size();
 
@@ -62,7 +61,6 @@ failed_close:
 failed_mmap:
 failed_sysconf:
 failed_peri:
-    bcm_host_deinit();
     if (fd != -1)
         (void) close(fd);
 failed_open:
