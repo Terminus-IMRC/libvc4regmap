@@ -17,6 +17,8 @@
 
     volatile uint32_t* vc4regmap_init(void);
     int vc4regmap_finalize(void);
-    _Bool is_qpu_enabled(volatile uint32_t *peri);
+    uint32_t vc4regmap_read(const uint32_t offs);
+    void vc4regmap_write(const uint32_t offs, const uint32_t val);
+    _Bool is_qpu_enabled(void);
 
 #endif /* _VC4REGMAP_H_ */

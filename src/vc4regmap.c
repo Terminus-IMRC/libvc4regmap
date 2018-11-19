@@ -10,7 +10,7 @@
 #include <bcm_host.h>
 #include "vc4regmap.h"
 
-static uint32_t *peri = NULL;
+static volatile uint32_t *peri = NULL;
 static unsigned peri_size = 0;
 
 volatile uint32_t* vc4regmap_init(void)
@@ -57,13 +57,14 @@ volatile uint32_t* vc4regmap_init(void)
     return peri;
 
 failed_close:
-    (void) munmap(peri, peri_size);
+    (void) munmap((void*) peri, peri_size);
 failed_mmap:
 failed_sysconf:
 failed_peri:
     if (fd != -1)
         (void) close(fd);
 failed_open:
+    peri = NULL;
     return NULL;
 }
 
@@ -71,21 +72,53 @@ int vc4regmap_finalize(void)
 {
     int err;
 
-    err = munmap(peri, peri_size);
+    err = munmap((void*) peri, peri_size);
     if (err) {
         fprintf(stderr, "error: munmap: %s\n", strerror(errno));
         return 1;
     }
 
-    bcm_host_deinit();
-
+    peri = NULL;
     return 0;
 }
 
-_Bool is_qpu_enabled(volatile uint32_t *peri)
+/* Peripheral reading/writing functions.  The assembly is needed because the
+ * peripheral cannot be accessed with vld/vst instruction.
+ */
+
+/* For assembly constraints, see
+ * https://gcc.gnu.org/onlinedocs/gcc/Constraints.html
+ */
+
+uint32_t vc4regmap_read(const uint32_t offs)
 {
-    const uint32_t expected = ('V' << 0) | ('3' << 8) | ('D' << 16);
-    if ((peri[V3D_IDENT0] & 0xffffff) == expected)
+    uint32_t val;
+
+    asm volatile (
+            "ldr %[value], [%[addr]]\n\t"
+            : [value] "=r" (val)
+            : [addr] "r" (peri + offs)
+            : "memory"
+    );
+
+    return val;
+}
+
+void vc4regmap_write(const uint32_t offs, const uint32_t val)
+{
+    asm volatile (
+            "str %[value], [%[addr]]\n\t"
+            :
+            : [value] "r" (val),
+              [addr] "r" (peri + offs)
+            : "memory"
+    );
+}
+
+_Bool is_qpu_enabled(void)
+{
+    const uint32_t expected = ('V' << 0) | ('3' << 8) | ('D' << 16) | (2 << 24);
+    if (vc4regmap_read(V3D_IDENT0) == expected)
         return 1;
     return 0;
 }
