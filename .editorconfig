@@ -5,12 +5,12 @@ charset = utf-8
 end_of_line = lf
 trim_trailing_whitespace = true
 insert_final_newline = true
-max_line_length=80
 
-[*.{c,h}]
+[{/src/*.c,/include/*.h}]
 indent_style = space
 indent_size = 4
+max_line_length=80
 
-[include/vc4regmap/*.h]
+[/include/vc4regmap/*.h]
 indent_style = space
 indent_size = 3
