@@ -1,5 +1,6 @@
 /* This file is also derived from Brcm_Android_ICS_Graphics_Stack, but these
  * changes are applied:
+ * - Remove I2C_SPI_SLV_APB_ID.
  * - Fix some *_RESET values.
  *   - It seems that the original script misses '0x' prefix to hex when it's 0.
  * - Rewrite register definitions with I2C_SPI_SLV_BASE.
