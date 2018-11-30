@@ -8,7 +8,7 @@
  */
 
 #define PM_PASSWORD                                              0x5a000000
-#define PM_BASE                                                  0x7e100000
+#define PM_BASE                                                  0x100000
 
 #define PM_GNRIC                                                 HW_REGISTER_RW( PM_BASE + 0x00 )
    #define PM_GNRIC_MASK                                         0x007f1fff

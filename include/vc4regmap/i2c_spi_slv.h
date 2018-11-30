@@ -6,7 +6,7 @@
  * - Rewrite register definitions with I2C_SPI_SLV_BASE.
  */
 
-#define I2C_SPI_SLV_BASE 0x7e214000
+#define I2C_SPI_SLV_BASE 0x214000
 
 #define I2C_SPI_SLV_DR                                           HW_REGISTER_RW( I2C_SPI_SLV_BASE + 0x00 )
    #define I2C_SPI_SLV_DR_MASK                                   0xffff3fff
