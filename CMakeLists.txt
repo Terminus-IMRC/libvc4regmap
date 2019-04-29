@@ -10,9 +10,9 @@ set(CPACK_PACKAGE_DESCRIPTION_SUMMARY
         "A library for accessing peripherals on Raspberry Pi")
 
 # See https://semver.org/ and https://www.pakin.org/~scott/ltver.html .
-set(CPACK_PACKAGE_VERSION_MAJOR 1)
+set(CPACK_PACKAGE_VERSION_MAJOR 2)
 set(CPACK_PACKAGE_VERSION_MINOR 0)
-set(CPACK_PACKAGE_VERSION_PATCH 1)
+set(CPACK_PACKAGE_VERSION_PATCH 0)
 
 # CMAKE_INSTALL_PREFIX and CPACK_PACKAGING_INSTALL_PREFIX must be identical
 # because the install prefix is used in the pkg-config file which will be
