@@ -1,6 +1,8 @@
 /test/ident
 /test/scratch
 
+/example/dmainfo
+
 /libvc4regmap.pc
 /libvc4regmap-*-*.deb
 
