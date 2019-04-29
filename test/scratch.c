@@ -35,9 +35,8 @@ int main(void)
 {
     unsigned i;
     const unsigned N = 4096;
-    int err;
 
-    if (vc4regmap_init() == NULL) {
+    if (vc4regmap_init()) {
         fprintf(stderr, "error: vc4regmap_init\n");
         exit(EXIT_FAILURE);
     }
@@ -58,9 +57,8 @@ int main(void)
         }
     }
 
-    err = vc4regmap_finalize();
-    if (err) {
-        fprintf(stderr, "error: vc4regmap_finalize: %d\n", err);
+    if (vc4regmap_finalize()) {
+        fprintf(stderr, "error: vc4regmap_finalize\n");
         exit(EXIT_FAILURE);
     }
 

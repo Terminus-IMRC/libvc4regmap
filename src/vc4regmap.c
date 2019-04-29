@@ -21,7 +21,7 @@
 static volatile uint32_t *peri = NULL;
 static unsigned peri_size = 0;
 
-volatile uint32_t* vc4regmap_init(void)
+int vc4regmap_init(void)
 {
     int fd;
     unsigned peri_addr;
@@ -62,7 +62,7 @@ volatile uint32_t* vc4regmap_init(void)
         goto failed_close;
     }
 
-    return peri;
+    return 0;
 
 failed_close:
     (void) munmap((void*) peri, peri_size);
@@ -73,7 +73,7 @@ failed_peri:
         (void) close(fd);
 failed_open:
     peri = NULL;
-    return NULL;
+    return 1;
 }
 
 int vc4regmap_finalize(void)

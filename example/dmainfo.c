@@ -37,7 +37,7 @@ void print_dma_info(const uint32_t off_debug)
 
 int main(void)
 {
-    if (vc4regmap_init() == NULL) {
+    if (vc4regmap_init()) {
         fprintf(stderr, "error: vc4regmap_init\n");
         exit(EXIT_FAILURE);
     }

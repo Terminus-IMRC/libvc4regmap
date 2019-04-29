@@ -36,7 +36,7 @@
 #include <vc4regmap/axi_dma_lite14.h>
 #include <vc4regmap/axi_dma15.h>
 
-    volatile uint32_t* vc4regmap_init(void);
+    int vc4regmap_init(void);
     int vc4regmap_finalize(void);
     uint32_t vc4regmap_read(const uint32_t offs);
     void vc4regmap_write(const uint32_t offs, const uint32_t val);
