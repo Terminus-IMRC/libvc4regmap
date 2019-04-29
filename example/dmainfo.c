@@ -75,5 +75,10 @@ int main(void)
     printf("DMA14: "); print_dma_info(DMA14_DEBUG);
     printf("DMA15: "); print_dma_info(DMA15_DEBUG);
 
+    if (vc4regmap_finalize()) {
+        fprintf(stderr, "error: vc4regmap_finalize\n");
+        exit(EXIT_FAILURE);
+    }
+
     return 0;
 }
